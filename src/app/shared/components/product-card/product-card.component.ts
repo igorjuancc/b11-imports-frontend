@@ -3,9 +3,9 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-product-card',
   standalone: false,
-  templateUrl: './product-card.html',
-  styleUrl: './product-card.css',
+  templateUrl: './product-card.component.html',
+  styleUrl: './product-card.component.css',
 })
-export class ProductCard {
+export class ProductCardComponent {
   @Input() produto: any;
 }

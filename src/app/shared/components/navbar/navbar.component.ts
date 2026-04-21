@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-navbar',
   standalone: false,
-  templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
+  templateUrl: './navbar.component.html',
+  styleUrl: './navbar.component.css',
 })
-export class Navbar {
+export class NavbarComponent {
   menus = [
     {
       nome: 'Chuteira Campo',
