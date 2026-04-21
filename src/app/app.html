@@ -1,35 +1,5 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <div class="container-fluid">
+<app-navbar></app-navbar>
 
-    <!-- Logo -->
-    <a class="navbar-brand">App</a>
-
-    <!-- Botão mobile -->
-    <button class="navbar-toggler" (click)="menuOpen = !menuOpen">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Conteúdo -->
-    <div class="collapse navbar-collapse" [class.show]="menuOpen">
-
-      <ul class="navbar-nav mx-auto">
-
-        <li class="nav-item" ngbDropdown #menu1="ngbDropdown" (mouseenter)="menu1.open()" (mouseleave)="menu1.close()">
-          <a class="nav-link dropdown-toggle">
-            Menu 1
-          </a>
-
-          <div ngbDropdownMenu>
-            <button ngbDropdownItem>Opção 1</button>
-            <button ngbDropdownItem>Opção 2</button>
-          </div>
-        </li>
-
-      </ul>
-
-    </div>  
-  </div>  
-</nav>
 <div class="container">
   <app-product-grid [produtos]="listaProdutos"></app-product-grid>
 </div>

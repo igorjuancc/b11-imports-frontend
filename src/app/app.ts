@@ -9,12 +9,6 @@ import { Component, signal } from '@angular/core';
 export class App {
   protected readonly title = signal('b11-imports');
 
-  menuOpen = false;
-
-  toggleMenu() {
-    this.menuOpen = !this.menuOpen;
-  }
-
   listaProdutos = [
     {
       nome: 'Produto 1',

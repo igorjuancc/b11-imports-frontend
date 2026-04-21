@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <div class="container-fluid">
+
+        <!-- Logo -->
+        <a class="navbar-brand" href="#">
+            <img src="b11_icon.png" alt="App">
+        </a>
+
+        <!-- Botão mobile -->
+        <button class="navbar-toggler" (click)="menuOpen = !menuOpen">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Conteúdo -->
+        <div class="collapse navbar-collapse" [class.show]="menuOpen">
+
+            <ul class="navbar-nav mx-auto">
+
+                <li class="nav-item" *ngFor="let menu of menus; let i = index" ngbDropdown #dropdown="ngbDropdown"
+                    (mouseenter)="dropdown.open()" (mouseleave)="dropdown.close()">
+
+                    <a class="nav-link dropdown-toggle">
+                        {{ menu.nome }}
+                    </a>
+
+                    <div ngbDropdownMenu>
+                        <button ngbDropdownItem *ngFor="let item of menu.itens">
+                            {{ item }} {{ menu.nome.split(' ')[1] || '' }}
+                        </button>
+                    </div>
+
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
