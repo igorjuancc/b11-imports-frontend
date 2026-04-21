@@ -3,18 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { ProductGrid } from './shared/components/product-grid/product-grid';
+import { ProductCard } from './shared/components/product-card/product-card';
 
 @NgModule({
-  declarations: [
-    App
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [
-    provideBrowserGlobalErrorListeners(),
-  ],
-  bootstrap: [App]
+  declarations: [App, ProductGrid, ProductCard],
+  imports: [BrowserModule, AppRoutingModule, NgbDropdownModule],
+  providers: [provideBrowserGlobalErrorListeners()],
+  bootstrap: [App],
 })
-export class AppModule { }
+export class AppModule {}

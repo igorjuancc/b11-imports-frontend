@@ -1,0 +1,17 @@
+<div class="card h-100 shadow-sm">
+
+  <img [src]="produto.imagem" class="card-img-top">
+
+  <div class="card-body d-flex flex-column">
+    <h5 class="card-title">{{ produto.nome }}</h5>
+    <p class="card-text text-muted">{{ produto.descricao }}</p>
+
+    <div class="mt-auto">
+      <p class="fw-bold text-success">R$ {{ produto.preco }}</p>
+      <button class="btn btn-primary w-100">
+        Comprar
+      </button>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,35 @@
+<div class="container mt-4">
+
+  <div class="row g-4">
+
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3"
+         *ngFor="let produto of produtosPaginados">
+
+      <app-product-card [produto]="produto"></app-product-card>
+
+    </div>
+
+  </div>
+
+  <!-- Paginação -->
+  <div class="d-flex justify-content-center mt-4">
+
+    <button class="btn btn-outline-primary me-2"
+            (click)="page = page - 1"
+            [disabled]="page === 1">
+      Anterior
+    </button>
+
+    <span class="align-self-center">
+      Página {{ page }}
+    </span>
+
+    <button class="btn btn-outline-primary ms-2"
+            (click)="page = page + 1"
+            [disabled]="page * pageSize >= produtos.length">
+      Próxima
+    </button>
+
+  </div>
+
+</div>
