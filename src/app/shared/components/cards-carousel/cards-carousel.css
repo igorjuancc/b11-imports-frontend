@@ -1,0 +1,12 @@
+::ng-deep .carousel-inner {
+  padding: 0 40px; 
+}
+
+::ng-deep .carousel-control-prev-icon,
+::ng-deep .carousel-control-next-icon {
+  filter: invert(1);
+}
+
+.cards-carousel {
+  min-height: 400px;
+}

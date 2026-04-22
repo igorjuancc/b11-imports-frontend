@@ -4,6 +4,7 @@ import { NavbarComponent, ProductCardComponent, ProductGridComponent } from './c
 import { NgbCarouselModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { ImageCarousel } from './components/image-carousel/image-carousel';
 import { MenuLogo } from './components/menu-logo/menu-logo';
+import { CardsCarousel } from './components/cards-carousel/cards-carousel';
 
 @NgModule({
   declarations: [
@@ -12,14 +13,16 @@ import { MenuLogo } from './components/menu-logo/menu-logo';
     ProductGridComponent,
     ImageCarousel,
     MenuLogo,
+    CardsCarousel,
   ],
   imports: [CommonModule, NgbDropdownModule, NgbCarouselModule],
   exports: [
     NavbarComponent, 
     ProductCardComponent, 
     ProductGridComponent, 
-    ImageCarousel,
-    MenuLogo
+    ImageCarousel, 
+    MenuLogo,
+    CardsCarousel
   ],
 })
 export class SharedModule {}
