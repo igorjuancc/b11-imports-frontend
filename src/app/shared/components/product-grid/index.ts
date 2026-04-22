@@ -1,1 +1,1 @@
-export * from './product-grid.component';
+export * from './product-grid';

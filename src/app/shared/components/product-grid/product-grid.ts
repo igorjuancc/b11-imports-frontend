@@ -3,8 +3,8 @@ import { Component, Input } from '@angular/core';
 @Component({
   selector: 'app-product-grid',
   standalone: false,
-  templateUrl: './product-grid.component.html',
-  styleUrl: './product-grid.component.css',
+  templateUrl: './product-grid.html',
+  styleUrl: './product-grid.css',
 })
 export class ProductGridComponent {
   @Input() produtos: any[] = [];
