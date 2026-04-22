@@ -1,0 +1,19 @@
+.carousel-home {
+    height: 70vh;
+    overflow: hidden;
+}
+
+.carousel-home ::ng-deep ngb-carousel,
+.carousel-home ::ng-deep .carousel-inner,
+.carousel-home ::ng-deep .carousel-item {
+  height: 100%;
+}
+
+.carousel-home ::ng-deep .picsum-img-wrapper {
+  height: 100%;
+}
+
+.carousel-home ::ng-deep img {
+  height: 100% !important;
+  object-fit: cover;
+}
