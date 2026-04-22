@@ -1,0 +1,15 @@
+<div class="mt-4 cards-carousel-wrapper"> 
+  <ngb-carousel [showNavigationIndicators]="true" [interval]="0">
+    
+    <ng-template ngbSlide *ngFor="let grupo of gruposDeProdutos">
+      <div class="row g-4 p-3 mx-0">
+        
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3" *ngFor="let produto of grupo">
+          <app-product-card [produto]="produto"></app-product-card>
+        </div>
+        
+      </div>
+    </ng-template>
+
+  </ngb-carousel>
+</div>
