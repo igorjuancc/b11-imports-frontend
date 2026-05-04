@@ -4,9 +4,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
 import { SharedModule } from './shared/shared.module';
+import { ManterProduto } from './produto/manter-produto/manter-produto';
 
 @NgModule({
-  declarations: [App],
+  declarations: [App, ManterProduto],
   imports: [BrowserModule, AppRoutingModule, SharedModule],
   providers: [provideBrowserGlobalErrorListeners()],
   bootstrap: [App],
