@@ -1,0 +1,32 @@
+.carousel-home {
+  height: 70vh; 
+  width: 100vw !important; 
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw !important;
+  margin-right: -50vw !important;
+  overflow: hidden;
+}
+
+.carousel-home ::ng-deep ngb-carousel,
+.carousel-home ::ng-deep .carousel-inner,
+.carousel-home ::ng-deep .carousel-item,
+.carousel-home ::ng-deep .picsum-img-wrapper {
+  height: 100% !important;
+  width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.carousel-home ::ng-deep img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover; 
+  border: none !important;
+}
+
+.carousel-home ::ng-deep .carousel-control-prev, 
+.carousel-home ::ng-deep .carousel-control-next {
+  width: 5%; 
+}
