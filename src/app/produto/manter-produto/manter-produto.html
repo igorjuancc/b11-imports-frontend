@@ -35,7 +35,7 @@
                 <label for="esporte" class="form-label">Esporte</label>
                 <ng-select name="esporte" [items]="esportes" bindLabel="nome" [(ngModel)]="produto.esporte"
                     placeholder="Selecione o esporte">
-                </ng-select>                
+                </ng-select>
             </div>
 
             <div class="col-md-4">
@@ -56,22 +56,16 @@
 
             <div class="col-md-4">
                 <label for="genero" class="form-label">Genêro</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Selecione o genêro</option>
-                    <option value="1">Feminino</option>
-                    <option value="2">Masculino</option>
-                    <option value="3">Unisex</option>
-                </select>
+                <ng-select name="genero" [items]="generos" [(ngModel)]="produto.genero"
+                    placeholder="Selecione o genero" required>
+                </ng-select>
             </div>
 
             <div class="col-md-4">
                 <label for="faixaEtaria" class="form-label">Perfil</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Selecione o perfil</option>
-                    <option value="1">Adulto</option>
-                    <option value="2">Infantil</option>
-                    <option value="3">Juvenil</option>
-                </select>
+                <ng-select name="faixaEtaria" [items]="faixasEtarias" [(ngModel)]="produto.faixaEtaria"
+                    placeholder="Selecione o perfil" required>
+                </ng-select>
             </div>
 
         </div>

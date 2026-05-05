@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Categoria, Esporte, Marca, Produto } from '../../shared/models';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriaService, EsporteService, MarcaService } from '../services';
+import { FaixaEtaria, Genero } from '../../shared/enums';
 
 @Component({
   selector: 'app-manter-produto',
@@ -18,6 +19,8 @@ export class ManterProduto implements OnInit {
   categorias: Categoria[] = [];
   esportes: Esporte[] = [];
   marcas: Marca[] = [];
+  faixasEtarias: FaixaEtaria[] = [];
+  generos: Genero[] = [];
 
   constructor(
     private route: ActivatedRoute,
@@ -44,5 +47,7 @@ export class ManterProduto implements OnInit {
     this.categorias = this.categoriaService.listarTodas();
     this.esportes = this.esporteService.listarTodos();
     this.marcas = this.marcaService.listarTodas();
+    this.faixasEtarias = Object.values(FaixaEtaria);
+    this.generos = Object.values(Genero);
   }
 }
