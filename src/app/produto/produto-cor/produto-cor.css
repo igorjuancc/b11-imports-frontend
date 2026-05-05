@@ -1,0 +1,13 @@
+.img-upload-thumbnail {
+  width: 100%;
+  max-width: 200px; 
+  height: auto;     
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.container-uploads {
+  display: flex;
+  flex-wrap: wrap; 
+  gap: 15px;
+}

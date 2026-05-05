@@ -1,1 +1,105 @@
-<p>manter-produto works!</p>
+<div class="container">
+    <h1 *ngIf="!novoProduto">Editar Produto</h1>
+    <h1 *ngIf="novoProduto">Novo Produto</h1>
+
+
+    <form #formProduto="ngForm">
+
+        <h4>Dados do Produto</h4>
+
+        <div class="mb-3 row">
+
+            <div class="col-md-10">
+                <label for="nome" class="form-label">Nome do Produto</label>
+                <input type="text" class="form-control" id="nome" placeholder="Nome do Produto">
+            </div>
+            <div class="col-md-2">
+                <label for="ativo" class="form-label">Habilitar Produto</label>
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="mb-3 row">
+
+            <div class="col-md-4">
+                <label for="categoria" class="form-label">Categoria</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione uma categoria</option>
+                    <option value="1">Camiseta</option>
+                    <option value="2">Chuteira</option>
+                    <option value="3">Luva</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="esporte" class="form-label">Esporte</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione o esporte</option>
+                    <option value="1">Futebol</option>
+                    <option value="2">Society</option>
+                    <option value="3">Futsal</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="lancamento" class="form-label">Data de Lançamento</label>
+                <input type="date" class="form-control" id="lancamento">
+            </div>
+
+        </div>
+
+        <div class="mb-3 row">
+
+            <div class="col-md-4">
+                <label for="marca" class="form-label">Marca</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione uma marca</option>
+                    <option value="1">Nike</option>
+                    <option value="2">Adidas</option>
+                    <option value="3">Puma</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="genero" class="form-label">Genêro</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione o genêro</option>
+                    <option value="1">Feminino</option>
+                    <option value="2">Masculino</option>
+                    <option value="3">Unisex</option>
+                </select>
+            </div>
+
+            <div class="col-md-4">
+                <label for="faixaEtaria" class="form-label">Perfil</label>
+                <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecione o perfil</option>
+                    <option value="1">Adulto</option>
+                    <option value="2">Infantil</option>
+                    <option value="3">Juvenil</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="mb-3 row">
+
+            <div class="col-md-12">
+                <label for="descricao" class="form-label">Descrição</label>
+                <textarea class="form-control" id="descricao" rows="3"></textarea>
+            </div>
+
+        </div>
+
+        <hr>    
+
+        <h4>Cores</h4>
+
+        <app-produto-cor></app-produto-cor>         
+                
+    </form>
+
+</div>

@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { Produto } from '../../shared/models';
 
 @Component({
   selector: 'app-manter-produto',
@@ -6,4 +8,9 @@ import { Component } from '@angular/core';
   templateUrl: './manter-produto.html',
   styleUrl: './manter-produto.css',
 })
-export class ManterProduto {}
+export class ManterProduto {
+  @ViewChild('formProduto') formProduto!: NgForm;
+  novoProduto: boolean = true;
+  produto: Produto = new Produto();
+
+}

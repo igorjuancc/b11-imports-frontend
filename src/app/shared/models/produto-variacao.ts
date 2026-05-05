@@ -1,19 +1,15 @@
-import { Cor } from "./cor";
 import { GradeTamanhoItem } from "./grade-tamanho-item";
-import { ImagemVariacaoProduto } from "./imagem-variacao-produto";
-import { Produto } from "./produto";
+import { ProdutoCor } from "./produto-cor";
 
 export class ProdutoVariacao {
     constructor(
         public id?: number,
-        public produto?: Produto,
-        public cor1?: Cor,
-        public cor2?: Cor,
+        public produtoCor?: ProdutoCor,
         public tamanho?: GradeTamanhoItem,
         public sku?: string,
-        public quantidade?: number,
-        public preco?: number,
+        public estoqueAtual?: number,
+        public precoOriginal?: number,
         public precoPromocional?: number,
-        public imagens: ImagemVariacaoProduto[] = []
+        public ativo?: boolean,
     ) {}
 }

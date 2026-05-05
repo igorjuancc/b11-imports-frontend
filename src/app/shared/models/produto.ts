@@ -15,6 +15,6 @@ export class Produto {
         public nome?: string,
         public descricao?: string,
         public ativo?: boolean,
-        public lancamento?: Date
+        public dataLancamento?: Date
     ) {}
 }
