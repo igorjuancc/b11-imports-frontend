@@ -49,12 +49,9 @@
 
             <div class="col-md-4">
                 <label for="marca" class="form-label">Marca</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Selecione uma marca</option>
-                    <option value="1">Nike</option>
-                    <option value="2">Adidas</option>
-                    <option value="3">Puma</option>
-                </select>
+                <ng-select name="marca" [items]="marcas" bindLabel="nome" [(ngModel)]="produto.marca"
+                    placeholder="Selecione uma marca" required>
+                </ng-select>
             </div>
 
             <div class="col-md-4">
