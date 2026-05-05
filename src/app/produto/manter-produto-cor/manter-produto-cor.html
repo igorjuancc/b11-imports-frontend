@@ -1,0 +1,57 @@
+<h5>Cor</h5>
+
+<div class="mb-3 row">
+
+    <div class="col-md-6">
+        <label for="corPrincipal" class="form-label">Cor Principal</label>
+        <ng-select name="corPrincipal" [items]="cores" bindLabel="nome" [(ngModel)]="produtoCor.corPrincipal"
+            placeholder="Selecione a cor principal" required>
+        </ng-select>
+    </div>
+
+    <div class="col-md-6">
+        <label for="corComplementar" class="form-label">Cores complementares</label>
+        <ng-select name="corComplementar" [items]="cores" bindLabel="nome" [(ngModel)]="produtoCor.coresComplementares"
+            [multiple]="true" placeholder="Cores complementares">
+        </ng-select>
+    </div>
+
+</div>
+
+<div class="mb-3 row">
+
+    <div class="col-md-12">
+
+        <label for="imagem" class="form-label">Adicionar imagem</label>
+
+        <div class="input-group mb-3">
+            <input type="file" class="form-control" id="inputGroupFile02">
+            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+        </div>
+
+    </div>
+
+    <div class="col-md-12">
+        <div class="container-uploads">
+            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
+                alt="teste" class="img-upload-thumbnail">
+
+            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
+                alt="teste" class="img-upload-thumbnail">
+
+            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
+                alt="teste" class="img-upload-thumbnail">
+
+            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
+                alt="teste" class="img-upload-thumbnail">
+
+            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
+                alt="teste" class="img-upload-thumbnail">
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+<app-variacao-produto></app-variacao-produto>

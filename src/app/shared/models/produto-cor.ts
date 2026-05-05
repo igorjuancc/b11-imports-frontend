@@ -7,7 +7,8 @@ export class ProdutoCor {
     constructor(
         public id?: number,
         public produto?: Produto,
-        public cores: Cor[] = [],
+        public corPrincipal?: Cor,
+        public coresComplementares: Cor[] = [],
         public imagens: ImagemProduto[] = [],
         public variacoes: ProdutoVariacao[] = []
     ) {}
