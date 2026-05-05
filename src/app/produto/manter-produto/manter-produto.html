@@ -33,12 +33,9 @@
 
             <div class="col-md-4">
                 <label for="esporte" class="form-label">Esporte</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Selecione o esporte</option>
-                    <option value="1">Futebol</option>
-                    <option value="2">Society</option>
-                    <option value="3">Futsal</option>
-                </select>
+                <ng-select name="esporte" [items]="esportes" bindLabel="nome" [(ngModel)]="produto.esporte"
+                    placeholder="Selecione o esporte">
+                </ng-select>                
             </div>
 
             <div class="col-md-4">

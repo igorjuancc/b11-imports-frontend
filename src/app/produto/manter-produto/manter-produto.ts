@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Categoria, Produto } from '../../shared/models';
+import { Categoria, Esporte, Produto } from '../../shared/models';
 import { ActivatedRoute } from '@angular/router';
-import { CategoriaService } from '../services';
+import { CategoriaService, EsporteService } from '../services';
 
 @Component({
   selector: 'app-manter-produto',
@@ -16,10 +16,12 @@ export class ManterProduto implements OnInit {
   produto: Produto = new Produto();
   id!: number;
   categorias: Categoria[] = [];
+  esportes: Esporte[] = [];
 
   constructor(
     private route: ActivatedRoute,
-    private categoriaService: CategoriaService
+    private categoriaService: CategoriaService,
+    private esporteService: EsporteService
   ) {}
 
   ngOnInit(): void {
@@ -38,5 +40,6 @@ export class ManterProduto implements OnInit {
 
   inicializaListas() {
     this.categorias = this.categoriaService.listarTodas();
+    this.esportes = this.esporteService.listarTodos();
   }
 }
