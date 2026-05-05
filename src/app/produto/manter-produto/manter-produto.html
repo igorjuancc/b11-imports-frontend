@@ -11,12 +11,13 @@
 
             <div class="col-md-10">
                 <label for="nome" class="form-label">Nome do Produto</label>
-                <input type="text" class="form-control" id="nome" placeholder="Nome do Produto">
+                <input name="nome" type="text" class="form-control" placeholder="Nome do Produto"
+                    [(ngModel)]="produto.nome" minlength="2" required>
             </div>
             <div class="col-md-2">
                 <label for="ativo" class="form-label">Habilitar Produto</label>
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked>
+                    <input name="ativo" [(ngModel)]="produto.ativo" class="form-check-input" type="checkbox" role="switch" checked>
                 </div>
             </div>
 
@@ -40,7 +41,7 @@
 
             <div class="col-md-4">
                 <label for="lancamento" class="form-label">Data de Lançamento</label>
-                <input type="date" class="form-control" id="lancamento">
+                <input name="lancamento" [(ngModel)]="produto.dataLancamento" type="date" class="form-control" required>
             </div>
 
         </div>
@@ -56,8 +57,8 @@
 
             <div class="col-md-4">
                 <label for="genero" class="form-label">Genêro</label>
-                <ng-select name="genero" [items]="generos" [(ngModel)]="produto.genero"
-                    placeholder="Selecione o genero" required>
+                <ng-select name="genero" [items]="generos" [(ngModel)]="produto.genero" placeholder="Selecione o genero"
+                    required>
                 </ng-select>
             </div>
 
@@ -74,7 +75,8 @@
 
             <div class="col-md-12">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea class="form-control" id="descricao" rows="3"></textarea>
+                <textarea name="descricao" [(ngModel)]="produto.descricao" 
+                class="form-control" rows="3" minlength="2" required></textarea>
             </div>
 
         </div>

@@ -37,7 +37,7 @@ export class ManterProduto implements OnInit {
     if (!this.novoProduto) {
       
     } else {
-      
+      this.produto.ativo = true;      
     }
 
     this.inicializaListas();
