@@ -26,12 +26,9 @@
 
             <div class="col-md-4">
                 <label for="categoria" class="form-label">Categoria</label>
-                <select class="form-select" aria-label="Default select example">
-                    <option selected>Selecione uma categoria</option>
-                    <option value="1">Camiseta</option>
-                    <option value="2">Chuteira</option>
-                    <option value="3">Luva</option>
-                </select>
+                <ng-select name="categoria" [items]="categorias" bindLabel="nome" [(ngModel)]="produto.categoria"
+                    placeholder="Selecione uma categoria" class="form-select" required>
+                </ng-select>
             </div>
 
             <div class="col-md-4">
@@ -94,12 +91,12 @@
 
         </div>
 
-        <hr>    
+        <hr>
 
         <h4>Cores</h4>
 
-        <app-produto-cor></app-produto-cor>         
-                
+        <app-produto-cor></app-produto-cor>
+
     </form>
 
 </div>

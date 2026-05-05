@@ -1,6 +1,8 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Produto } from '../../shared/models';
+import { Categoria, Produto } from '../../shared/models';
+import { ActivatedRoute } from '@angular/router';
+import { CategoriaService } from '../services';
 
 @Component({
   selector: 'app-manter-produto',
@@ -8,9 +10,33 @@ import { Produto } from '../../shared/models';
   templateUrl: './manter-produto.html',
   styleUrl: './manter-produto.css',
 })
-export class ManterProduto {
+export class ManterProduto implements OnInit {  
   @ViewChild('formProduto') formProduto!: NgForm;
   novoProduto: boolean = true;
   produto: Produto = new Produto();
+  id!: number;
+  categorias: Categoria[] = [];
 
+  constructor(
+    private route: ActivatedRoute,
+    private categoriaService: CategoriaService
+  ) {}
+
+  ngOnInit(): void {
+    this.id = this.route.snapshot.params['id'];
+
+    this.novoProduto = !this.id;
+
+    if (!this.novoProduto) {
+      
+    } else {
+      
+    }
+
+    this.inicializaListas();
+  }
+
+  inicializaListas() {
+    this.categorias = this.categoriaService.listarTodas();
+  }
 }
