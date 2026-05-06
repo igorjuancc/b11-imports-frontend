@@ -1,0 +1,20 @@
+.formProduto {
+    border-radius: 5px;
+    border: 1px solid #212529;
+    padding: 10px;
+}
+
+.tituloPrincipal {
+    border-bottom: 1px solid #212529;
+}
+
+.divCores {
+    border-radius: 5px;
+    border: 1px solid lightgrey;
+    padding: 10px;
+}
+
+.divBtnAddCor {
+    text-align: right;
+    padding-top: 5px;
+}

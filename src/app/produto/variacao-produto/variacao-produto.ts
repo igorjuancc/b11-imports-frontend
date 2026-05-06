@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { ProdutoVariacao } from '../../shared/models';
 
 @Component({
   selector: 'app-variacao-produto',
@@ -6,4 +7,7 @@ import { Component } from '@angular/core';
   templateUrl: '/variacao-produto.html',
   styleUrl: './variacao-produto.css',
 })
-export class VariacaoProduto {}
+export class VariacaoProduto {
+  @Input() variacaoProduto!: ProdutoVariacao;
+
+}

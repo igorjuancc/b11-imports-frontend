@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Cor, ImagemProduto, ProdutoCor } from '../../shared/models';
+import { Component, Input, OnInit } from '@angular/core';
+import { Cor, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
 import { CorService } from '../services';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
@@ -10,10 +10,11 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
   styleUrl: './manter-produto-cor.css',
 })
 export class ManterProdutoCor implements OnInit {
+  @Input() produtoCor!: ProdutoCor;
+  
   readonly TAM_MAX_IMG = 5 * 1024 * 1024;
   readonly NUM_MAX_IMG = 5;
 
-  produtoCor: ProdutoCor = new ProdutoCor();
   cores: Cor[] = [];
 
   constructor(
@@ -22,6 +23,10 @@ export class ManterProdutoCor implements OnInit {
 
   ngOnInit(): void {
     this.cores = this.corService.listarTodas();
+
+    if (!this.produtoCor.id) {
+      this.adicionarVariacaoProduto();
+    }
   }
 
   uploadImagem(input: HTMLInputElement): void {
@@ -92,5 +97,9 @@ export class ManterProdutoCor implements OnInit {
   drop(event: CdkDragDrop<ImagemProduto[]>): void {
     moveItemInArray(this.produtoCor.imagens, event.previousIndex, event.currentIndex);
     this.reordenarImagens();
+  }
+
+  adicionarVariacaoProduto() {
+    this.produtoCor.variacoes.push(new ProdutoVariacao);
   }
 }

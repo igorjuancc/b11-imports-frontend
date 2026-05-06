@@ -6,7 +6,6 @@ import { ProdutoVariacao } from "./produto-variacao";
 export class ProdutoCor {
     constructor(
         public id?: number,
-        public produto?: Produto,
         public corPrincipal?: Cor,
         public coresComplementares: Cor[] = [],
         public imagens: ImagemProduto[] = [],

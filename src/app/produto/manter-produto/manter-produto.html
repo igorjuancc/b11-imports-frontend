@@ -1,11 +1,11 @@
 <div class="container">
-    <h1 *ngIf="!novoProduto">Editar Produto</h1>
-    <h1 *ngIf="novoProduto">Novo Produto</h1>
+    <h1 *ngIf="!novoProduto" class="tituloPrincipal">Editar Produto</h1>
+    <h1 *ngIf="novoProduto" class="tituloPrincipal">Novo Produto</h1>
 
 
-    <form #formProduto="ngForm">
+    <form #formProduto="ngForm" class="formProduto">
 
-        <h4>Dados do Produto</h4>
+        <h4 class="tituloPrincipal">Dados do Produto</h4>
 
         <div class="mb-3 row">
 
@@ -17,7 +17,8 @@
             <div class="col-md-2">
                 <label for="ativo" class="form-label">Habilitar Produto</label>
                 <div class="form-check form-switch">
-                    <input name="ativo" [(ngModel)]="produto.ativo" class="form-check-input" type="checkbox" role="switch" checked>
+                    <input name="ativo" [(ngModel)]="produto.ativo" class="form-check-input" type="checkbox"
+                        role="switch" checked>
                 </div>
             </div>
 
@@ -75,17 +76,27 @@
 
             <div class="col-md-12">
                 <label for="descricao" class="form-label">Descrição</label>
-                <textarea name="descricao" [(ngModel)]="produto.descricao" 
-                class="form-control" rows="3" minlength="2" required></textarea>
+                <textarea name="descricao" [(ngModel)]="produto.descricao" class="form-control" rows="3" minlength="2"
+                    required></textarea>
             </div>
 
         </div>
 
-        <hr>
+        <div class="mb-3 divCores">
+            <h4 class="tituloPrincipal">Cores do Produto</h4>            
 
-        <h4>Cores</h4>
+            <div *ngFor="let produtoCor of produto.produtoCores">
 
-        <app-manter-produto-cor></app-manter-produto-cor>
+                <app-manter-produto-cor [produtoCor]="produtoCor">
+                </app-manter-produto-cor>
+
+            </div>
+
+            <div class="divBtnAddCor">
+                <button (click)="adicionarProdutoCor()" type="button" class="btn btn-primary">+ Adicionar Nova Cor</button>
+            </div>
+
+        </div>
 
     </form>
 

@@ -1,62 +1,78 @@
-<h5>Cor</h5>
+<div class="divCorIndividual">
 
-<div class="mb-3 row">
+    <h5>Cor</h5>
 
-    <div class="col-md-6">
-        <label for="corPrincipal" class="form-label">Cor Principal</label>
-        <ng-select name="corPrincipal" [items]="cores" bindLabel="nome" [(ngModel)]="produtoCor.corPrincipal"
-            placeholder="Selecione a cor principal" required>
-        </ng-select>
-    </div>
+    <div class="mb-3 row">
 
-    <div class="col-md-6">
-        <label for="corComplementar" class="form-label">Cores complementares</label>
-        <ng-select name="corComplementar" [items]="cores" bindLabel="nome" [(ngModel)]="produtoCor.coresComplementares"
-            [multiple]="true" placeholder="Cores complementares">
-        </ng-select>
-    </div>
+        <div class="col-md-6">
+            <label for="corPrincipal" class="form-label">Cor Principal</label>
+            <ng-select name="corPrincipal" [items]="cores" bindLabel="nome" [(ngModel)]="produtoCor.corPrincipal"
+                placeholder="Selecione a cor principal" required>
+            </ng-select>
+        </div>
 
-</div>
-
-<div class="mb-3 row">
-
-    <div class="col-md-6">
-
-        <label for="imagemSelecionada" class="form-label">Adicionar imagem</label>
-
-        <div class="input-group mb-3">
-            <div class="input-group">
-                <input type="file" class="form-control" aria-label="Upload" #inputImagens multiple accept="image/*">
-                <button class="btn btn-primary" type="button" (click)="uploadImagem(inputImagens)">
-                    Upload
-                </button>
-            </div>
+        <div class="col-md-6">
+            <label for="corComplementar" class="form-label">Cores complementares</label>
+            <ng-select name="corComplementar" [items]="cores" bindLabel="nome"
+                [(ngModel)]="produtoCor.coresComplementares" [multiple]="true" placeholder="Cores complementares">
+            </ng-select>
         </div>
 
     </div>
 
-    <div class="col-md-12">
-        <div class="container-uploads" cdkDropList cdkDropListOrientation="horizontal"
-            (cdkDropListDropped)="drop($event)">
+    <div class="mb-3 row">
 
-            <div *ngFor="let img of produtoCor.imagens; let i = index" class="wrapper-img" cdkDrag>
+        <div class="col-md-6">
 
-                <img [src]="img.link" class="img-upload-thumbnail">
+            <label for="imagemSelecionada" class="form-label">Adicionar imagem</label>
 
-                <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
-                    (click)="removerImagem(i)" style="border-radius: 50%; padding: 2px 8px;">
-                    &times;
-                </button>
-
-                <div class="img-placeholder" *cdkDragPlaceholder></div>
+            <div class="input-group mb-3">
+                <div class="input-group">
+                    <input type="file" class="form-control" aria-label="Upload" #inputImagens multiple accept="image/*">
+                    <button class="btn btn-primary" type="button" (click)="uploadImagem(inputImagens)">
+                        Upload
+                    </button>
+                </div>
             </div>
+
+        </div>
+
+        <div class="col-md-12">
+            <div class="container-uploads" cdkDropList cdkDropListOrientation="horizontal"
+                (cdkDropListDropped)="drop($event)">
+
+                <div *ngFor="let img of produtoCor.imagens; let i = index" class="wrapper-img" cdkDrag>
+
+                    <img [src]="img.link" class="img-upload-thumbnail">
+
+                    <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
+                        (click)="removerImagem(i)" style="border-radius: 50%; padding: 2px 8px;">
+                        &times;
+                    </button>
+
+                    <div class="img-placeholder" *cdkDragPlaceholder></div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="mb-3 divVariacaoProduto">
+        <h5>Tamanho do Produto</h5>
+
+        <div *ngFor="let variacao of produtoCor.variacoes">
+
+            <app-variacao-produto [variacaoProduto]="variacao">
+            </app-variacao-produto>
+
+        </div>
+
+        <div class="divBtnAddTamanho">
+            <button (click)="adicionarVariacaoProduto()" type="button" class="btn btn-primary">+ Adicionar Novo Tamanho</button>
         </div>
 
     </div>
 
-
 </div>
-
-<hr />
-
-<app-variacao-produto></app-variacao-produto>

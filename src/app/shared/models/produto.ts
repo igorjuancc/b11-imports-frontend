@@ -3,6 +3,7 @@ import { Genero } from "../enums/genero";
 import { Categoria } from "./categoria";
 import { Esporte } from "./esporte";
 import { Marca } from "./marca";
+import { ProdutoCor } from "./produto-cor";
 
 export class Produto {
     constructor(
@@ -15,6 +16,7 @@ export class Produto {
         public nome?: string,
         public descricao?: string,
         public ativo?: boolean,
-        public dataLancamento?: Date
+        public dataLancamento?: Date,
+        public produtoCores: ProdutoCor[] = []
     ) {}
 }

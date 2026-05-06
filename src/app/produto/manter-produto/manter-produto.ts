@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Categoria, Esporte, Marca, Produto } from '../../shared/models';
+import { Categoria, Esporte, Marca, Produto, ProdutoCor } from '../../shared/models';
 import { ActivatedRoute } from '@angular/router';
 import { CategoriaService, EsporteService, MarcaService } from '../services';
 import { FaixaEtaria, Genero } from '../../shared/enums';
@@ -37,7 +37,8 @@ export class ManterProduto implements OnInit {
     if (!this.novoProduto) {
       
     } else {
-      this.produto.ativo = true;      
+      this.produto.ativo = true; 
+      this.adicionarProdutoCor();
     }
 
     this.inicializaListas();
@@ -49,5 +50,9 @@ export class ManterProduto implements OnInit {
     this.marcas = this.marcaService.listarTodas();
     this.faixasEtarias = Object.values(FaixaEtaria);
     this.generos = Object.values(Genero);
+  }
+
+  adicionarProdutoCor() {
+    this.produto.produtoCores.push(new ProdutoCor());
   }
 }
