@@ -1,6 +1,5 @@
 import { Cor } from "./cor";
 import { ImagemProduto } from "./imagem-produto";
-import { Produto } from "./produto";
 import { ProdutoVariacao } from "./produto-variacao";
 
 export class ProdutoCor {
