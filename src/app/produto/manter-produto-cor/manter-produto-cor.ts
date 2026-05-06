@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Cor, ImagemProduto, ProdutoCor } from '../../shared/models';
 import { CorService } from '../services';
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-manter-produto-cor',
@@ -86,5 +87,10 @@ export class ManterProdutoCor implements OnInit {
     this.produtoCor.imagens.forEach((img, index) => {
       img.ordem = index + 1;
     });
+  }
+
+  drop(event: CdkDragDrop<ImagemProduto[]>): void {
+    moveItemInArray(this.produtoCor.imagens, event.previousIndex, event.currentIndex);
+    this.reordenarImagens();
   }
 }

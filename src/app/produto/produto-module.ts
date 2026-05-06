@@ -5,9 +5,15 @@ import { ManterProdutoCor } from './manter-produto-cor/manter-produto-cor';
 import { ManterProduto } from './manter-produto';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [VariacaoProduto, ManterProdutoCor, ManterProduto],
-  imports: [CommonModule, FormsModule, NgSelectModule]
+  imports: [
+    CommonModule, 
+    FormsModule, 
+    DragDropModule,
+    NgSelectModule
+  ]
 })
 export class ProdutoModule {}

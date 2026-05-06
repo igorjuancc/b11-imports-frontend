@@ -36,19 +36,22 @@
     </div>
 
     <div class="col-md-12">
-        <div class="container-uploads d-flex flex-wrap gap-2">
+        <div class="container-uploads" cdkDropList cdkDropListOrientation="horizontal"
+            (cdkDropListDropped)="drop($event)">
 
-            <div *ngFor="let img of produtoCor.imagens; let i = index" class="position-relative wrapper-img">
+            <div *ngFor="let img of produtoCor.imagens; let i = index" class="wrapper-img" cdkDrag>
 
-                <img [src]="img.link" [alt]="'Imagem ' + img.ordem" class="img-upload-thumbnail">
+                <img [src]="img.link" class="img-upload-thumbnail">
 
-                <button type="button" class="btn btn-danger btn-xs btn-remove" (click)="removerImagem(i)">
+                <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
+                    (click)="removerImagem(i)" style="border-radius: 50%; padding: 2px 8px;">
                     &times;
                 </button>
 
-                <span class="badge bg-dark badge-ordem">{{img.ordem}}</span>
+                <div class="img-placeholder" *cdkDragPlaceholder></div>
             </div>
         </div>
+
     </div>
 
 
