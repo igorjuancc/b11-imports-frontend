@@ -20,35 +20,37 @@
 
 <div class="mb-3 row">
 
-    <div class="col-md-12">
+    <div class="col-md-6">
 
-        <label for="imagem" class="form-label">Adicionar imagem</label>
+        <label for="imagemSelecionada" class="form-label">Adicionar imagem</label>
 
         <div class="input-group mb-3">
-            <input type="file" class="form-control" id="inputGroupFile02">
-            <label class="input-group-text" for="inputGroupFile02">Upload</label>
+            <div class="input-group">
+                <input type="file" class="form-control" aria-label="Upload" #inputImagens multiple accept="image/*">
+                <button class="btn btn-primary" type="button" (click)="uploadImagem(inputImagens)">
+                    Upload
+                </button>
+            </div>
         </div>
 
     </div>
 
     <div class="col-md-12">
-        <div class="container-uploads">
-            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
-                alt="teste" class="img-upload-thumbnail">
+        <div class="container-uploads d-flex flex-wrap gap-2">
 
-            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
-                alt="teste" class="img-upload-thumbnail">
+            <div *ngFor="let img of produtoCor.imagens; let i = index" class="position-relative wrapper-img">
 
-            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
-                alt="teste" class="img-upload-thumbnail">
+                <img [src]="img.link" [alt]="'Imagem ' + img.ordem" class="img-upload-thumbnail">
 
-            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
-                alt="teste" class="img-upload-thumbnail">
+                <button type="button" class="btn btn-danger btn-xs btn-remove" (click)="removerImagem(i)">
+                    &times;
+                </button>
 
-            <img src="https://acdn-us.mitiendanube.com/stores/001/063/592/products/13541573-264c2b6a1cf90b668a17346365608316-1024-1024.webp"
-                alt="teste" class="img-upload-thumbnail">
+                <span class="badge bg-dark badge-ordem">{{img.ordem}}</span>
+            </div>
         </div>
     </div>
+
 
 </div>
 

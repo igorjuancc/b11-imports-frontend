@@ -5,6 +5,7 @@ export class ImagemProduto {
         public id?: number,
         public produtoCor?: ProdutoCor,
         public ordem?: number,
-        public link?: string
+        public link?: string,
+        public file?: File 
     ) {}
 }
