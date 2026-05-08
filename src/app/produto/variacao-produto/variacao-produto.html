@@ -1,15 +1,10 @@
-
-
 <div class="mb-3 row">
 
     <div class="col-md-3">
-        <label for="genero" class="form-label">Tamanho</label>
-        <select class="form-select" aria-label="Default select example">
-            <option selected>Selecione o tamanho do produto</option>
-            <option value="1">41</option>
-            <option value="2">42</option>
-            <option value="3">43</option>
-        </select>
+        <label for="tamanho" class="form-label">Tamanho</label>
+        <ng-select name="tamanho" [items]="tamanhosDisponiveis" bindLabel="tamanho" [(ngModel)]="variacaoProduto.tamanho"
+            placeholder="Selecione o tamanho do produto" required>
+        </ng-select>
     </div>
 
     <div class="col-md-2">

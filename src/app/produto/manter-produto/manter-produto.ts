@@ -4,6 +4,7 @@ import { Categoria, Esporte, Marca, Produto, ProdutoCor } from '../../shared/mod
 import { ActivatedRoute } from '@angular/router';
 import { CategoriaService, EsporteService, MarcaService } from '../services';
 import { FaixaEtaria, Genero } from '../../shared/enums';
+import { ProdutoFiltro } from '../../shared/filters';
 
 @Component({
   selector: 'app-manter-produto',
@@ -11,7 +12,7 @@ import { FaixaEtaria, Genero } from '../../shared/enums';
   templateUrl: './manter-produto.html',
   styleUrl: './manter-produto.css',
 })
-export class ManterProduto implements OnInit {  
+export class ManterProduto implements OnInit {
   @ViewChild('formProduto') formProduto!: NgForm;
   novoProduto: boolean = true;
   produto: Produto = new Produto();
@@ -21,13 +22,14 @@ export class ManterProduto implements OnInit {
   marcas: Marca[] = [];
   faixasEtarias: FaixaEtaria[] = [];
   generos: Genero[] = [];
+  filtroTamanho: ProdutoFiltro = {};
 
   constructor(
     private route: ActivatedRoute,
     private categoriaService: CategoriaService,
     private esporteService: EsporteService,
     private marcaService: MarcaService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.params['id'];
@@ -35,9 +37,9 @@ export class ManterProduto implements OnInit {
     this.novoProduto = !this.id;
 
     if (!this.novoProduto) {
-      
+
     } else {
-      this.produto.ativo = true; 
+      this.produto.ativo = true;
       this.adicionarProdutoCor();
     }
 
@@ -54,5 +56,13 @@ export class ManterProduto implements OnInit {
 
   adicionarProdutoCor() {
     this.produto.produtoCores.push(new ProdutoCor());
+  }
+
+  atualizarFiltrosParaTamanho() {
+    this.filtroTamanho = {
+      generoId: this.produto.genero as any,
+      faixaEtariaId: this.produto.faixaEtaria as any,
+      categoriaId: this.produto.categoria?.id
+    };
   }
 }

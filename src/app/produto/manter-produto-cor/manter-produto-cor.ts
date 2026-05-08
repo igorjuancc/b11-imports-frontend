@@ -1,7 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Cor, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
+import { Cor, GradeTamanhoItem, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
 import { CorService } from '../services';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+import { ProdutoFiltro } from '../../shared/filters';
 
 @Component({
   selector: 'app-manter-produto-cor',
@@ -11,6 +12,9 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 })
 export class ManterProdutoCor implements OnInit {
   @Input() produtoCor!: ProdutoCor;
+  @Input() filtroTamanho!: ProdutoFiltro;
+
+  tamanhosDisponiveis: GradeTamanhoItem[] = [];
   
   readonly TAM_MAX_IMG = 5 * 1024 * 1024;
   readonly NUM_MAX_IMG = 5;

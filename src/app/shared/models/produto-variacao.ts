@@ -8,6 +8,6 @@ export class ProdutoVariacao {
         public estoqueAtual?: number,
         public precoOriginal?: number,
         public precoPromocional?: number,
-        public ativo?: boolean,
+        public ativo?: boolean
     ) {}
 }

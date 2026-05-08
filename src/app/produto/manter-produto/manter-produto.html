@@ -28,8 +28,9 @@
 
             <div class="col-md-4">
                 <label for="categoria" class="form-label">Categoria</label>
-                <ng-select name="categoria" [items]="categorias" bindLabel="nome" [(ngModel)]="produto.categoria"
-                    placeholder="Selecione uma categoria" required>
+                <ng-select name="categoria" [items]="categorias" 
+                    bindLabel="nome" [(ngModel)]="produto.categoria"
+                    placeholder="Selecione uma categoria" (change)="atualizarFiltrosParaTamanho()" required>
                 </ng-select>
             </div>
 
@@ -58,15 +59,17 @@
 
             <div class="col-md-4">
                 <label for="genero" class="form-label">Genêro</label>
-                <ng-select name="genero" [items]="generos" [(ngModel)]="produto.genero" placeholder="Selecione o genero"
-                    required>
+                <ng-select name="genero" [items]="generos" 
+                    [(ngModel)]="produto.genero" placeholder="Selecione o genero"
+                    (change)="atualizarFiltrosParaTamanho()" required>
                 </ng-select>
             </div>
 
             <div class="col-md-4">
                 <label for="faixaEtaria" class="form-label">Perfil</label>
-                <ng-select name="faixaEtaria" [items]="faixasEtarias" [(ngModel)]="produto.faixaEtaria"
-                    placeholder="Selecione o perfil" required>
+                <ng-select name="faixaEtaria" [items]="faixasEtarias" 
+                    [(ngModel)]="produto.faixaEtaria" placeholder="Selecione o perfil"
+                    (change)="atualizarFiltrosParaTamanho()" required>
                 </ng-select>
             </div>
 
@@ -83,17 +86,18 @@
         </div>
 
         <div class="mb-3 divCores">
-            <h4 class="tituloPrincipal">Cores do Produto</h4>            
+            <h4 class="tituloPrincipal">Cores do Produto</h4>
 
             <div *ngFor="let produtoCor of produto.produtoCores">
 
-                <app-manter-produto-cor [produtoCor]="produtoCor">
+                <app-manter-produto-cor [produtoCor]="produtoCor" [filtroTamanho]="filtroTamanho">
                 </app-manter-produto-cor>
 
             </div>
 
             <div class="divBtnAddCor">
-                <button (click)="adicionarProdutoCor()" type="button" class="btn btn-primary">+ Adicionar Nova Cor</button>
+                <button (click)="adicionarProdutoCor()" type="button" class="btn btn-primary">+ Adicionar Nova
+                    Cor</button>
             </div>
 
         </div>
