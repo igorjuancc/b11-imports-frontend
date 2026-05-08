@@ -1,6 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { Cor, GradeTamanhoItem, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
-import { CorService } from '../services';
+import { CorService, GradeTamanhoItemService } from '../services';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProdutoFiltro } from '../../shared/filters';
 
@@ -22,7 +22,8 @@ export class ManterProdutoCor implements OnInit {
   cores: Cor[] = [];
 
   constructor(
-    private corService: CorService
+    private corService: CorService,
+    private gradeTamanhoItemService: GradeTamanhoItemService
   ) { }
 
   ngOnInit(): void {
@@ -105,5 +106,15 @@ export class ManterProdutoCor implements OnInit {
 
   adicionarVariacaoProduto() {
     this.produtoCor.variacoes.push(new ProdutoVariacao);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['filtroTamanho'] && !changes['filtroTamanho'].firstChange) {
+      this.buscarTamanhosDisponiveisFiltro();
+    }
+  }
+
+  buscarTamanhosDisponiveisFiltro() {
+    this.tamanhosDisponiveis = this.gradeTamanhoItemService.listarTodos();
   }
 }
