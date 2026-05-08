@@ -15,7 +15,8 @@ export class ManterProdutoCor implements OnInit {
   @Input() filtroTamanho!: ProdutoFiltro;
 
   tamanhosDisponiveis: GradeTamanhoItem[] = [];
-  
+  mensagensAviso: string[] = [];
+
   readonly TAM_MAX_IMG = 5 * 1024 * 1024;
   readonly NUM_MAX_IMG = 5;
 
@@ -28,6 +29,7 @@ export class ManterProdutoCor implements OnInit {
 
   ngOnInit(): void {
     this.cores = this.corService.listarTodas();
+    this.buscarTamanhosDisponiveisFiltro();
 
     if (!this.produtoCor.id) {
       this.adicionarVariacaoProduto();
@@ -115,6 +117,24 @@ export class ManterProdutoCor implements OnInit {
   }
 
   buscarTamanhosDisponiveisFiltro() {
-    this.tamanhosDisponiveis = this.gradeTamanhoItemService.listarTodos();
+    this.mensagensAviso = [];
+    let realizarBusca: boolean = true;
+
+    if (!this.filtroTamanho.categoriaId) {
+      this.mensagensAviso.push("Necessário preencher a categoria do produto");
+      realizarBusca = false;
+    }
+    if (!this.filtroTamanho.faixaEtariaId) {
+      this.mensagensAviso.push("Necessário preencher o perfil do produto");
+      realizarBusca = false;
+    }
+    if (!this.filtroTamanho.generoId) {
+      this.mensagensAviso.push("Necessário preencher genêro do produto");
+      realizarBusca = false;
+    }
+
+    if (realizarBusca) {
+      this.tamanhosDisponiveis = this.gradeTamanhoItemService.listarTodos();
+    }
   }
 }
