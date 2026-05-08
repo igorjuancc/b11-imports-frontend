@@ -135,6 +135,13 @@ export class ManterProdutoCor implements OnInit {
 
     if (realizarBusca) {
       this.tamanhosDisponiveis = this.gradeTamanhoItemService.listarTodos();
+      this.limparTamanhosDeVariacoes();
     }
+  }
+
+  private limparTamanhosDeVariacoes() {
+    this.produtoCor.variacoes.forEach(variacao => {
+      variacao.tamanho = undefined;
+    });
   }
 }
