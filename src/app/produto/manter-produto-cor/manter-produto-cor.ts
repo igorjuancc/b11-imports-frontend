@@ -163,9 +163,9 @@ export class ManterProdutoCor implements OnInit {
 
   private ordenarTamanhosDisponiveis(): void {
     this.tamanhosDisponiveis.sort((a, b) => {
-      const nomeA = a.tamanho ?? '';
-      const nomeB = b.tamanho ?? '';
-      return nomeA.localeCompare(nomeB);
+      const ordemA = a.ordem ?? 0;
+      const ordemB = b.ordem ?? 0;
+      return ordemA - ordemB;
     });
   }
 }
