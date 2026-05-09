@@ -113,6 +113,7 @@ export class ManterProdutoCor implements OnInit {
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['filtroTamanho'] && !changes['filtroTamanho'].firstChange) {
       this.buscarTamanhosDisponiveisFiltro();
+      this.limparTamanhosDeVariacoes();
     }
   }
 
@@ -135,13 +136,36 @@ export class ManterProdutoCor implements OnInit {
 
     if (realizarBusca) {
       this.tamanhosDisponiveis = this.gradeTamanhoItemService.listarTodos();
-      this.limparTamanhosDeVariacoes();
     }
   }
 
   private limparTamanhosDeVariacoes() {
     this.produtoCor.variacoes.forEach(variacao => {
       variacao.tamanho = undefined;
+    });
+  }
+
+  handleTamanhoAlterado(event: { anterior: GradeTamanhoItem | undefined, novo: GradeTamanhoItem }) {
+    let listaAtualizada = [...this.tamanhosDisponiveis];
+
+    if (event.anterior) {
+      listaAtualizada.push(event.anterior);
+    }
+
+    if (event.novo) {
+      listaAtualizada = listaAtualizada.filter(t => t.id !== event.novo.id);
+    }
+
+    this.tamanhosDisponiveis = listaAtualizada;
+    this.ordenarTamanhosDisponiveis();
+  }
+
+
+  private ordenarTamanhosDisponiveis(): void {
+    this.tamanhosDisponiveis.sort((a, b) => {
+      const nomeA = a.tamanho ?? '';
+      const nomeB = b.tamanho ?? '';
+      return nomeA.localeCompare(nomeB);
     });
   }
 }

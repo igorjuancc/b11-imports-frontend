@@ -72,7 +72,9 @@
 
         <div *ngFor="let variacao of produtoCor.variacoes">
 
-            <app-variacao-produto [variacaoProduto]="variacao" [tamanhosDisponiveis]="tamanhosDisponiveis">
+            <app-variacao-produto [variacaoProduto]="variacao" 
+                [tamanhosDisponiveis]="tamanhosDisponiveis"
+                (tamanhoAlterado)="handleTamanhoAlterado($event)">
             </app-variacao-produto>
 
         </div>

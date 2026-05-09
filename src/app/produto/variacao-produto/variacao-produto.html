@@ -2,7 +2,10 @@
 
     <div class="col-md-3">
         <label for="tamanho" class="form-label">Tamanho</label>
-        <ng-select name="tamanho" [items]="tamanhosDisponiveis" bindLabel="tamanho" [(ngModel)]="variacaoProduto.tamanho"
+        <ng-select name="tamanho" [items]="tamanhosDisponiveis" 
+            bindLabel="tamanho" [(ngModel)]="variacaoProduto.tamanho"
+            (change)="onTamanhoChange($event)"
+            (focus)="setTamanhoAnterior(variacaoProduto.tamanho)"
             placeholder="Selecione o tamanho do produto" required>
         </ng-select>
     </div>
