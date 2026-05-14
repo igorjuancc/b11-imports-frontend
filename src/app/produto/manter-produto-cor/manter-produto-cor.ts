@@ -118,6 +118,7 @@ export class ManterProdutoCor implements OnInit {
   }
 
   buscarTamanhosDisponiveisFiltro() {
+    this.tamanhosDisponiveis = [];
     this.mensagensAviso = [];
     let realizarBusca: boolean = true;
 

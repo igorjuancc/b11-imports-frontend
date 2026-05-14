@@ -4,7 +4,9 @@
         <label for="tamanho" class="form-label">Tamanho</label>
         <ng-select name="tamanho" [items]="tamanhosDisponiveis" bindLabel="tamanho"
             [(ngModel)]="variacaoProduto.tamanho" (change)="onTamanhoChange($event)"
-            (focus)="setTamanhoAnterior(variacaoProduto.tamanho)" placeholder="Selecione o tamanho do produto" required>
+            (focus)="setTamanhoAnterior(variacaoProduto.tamanho)" 
+            [disabled]="tamanhosDisponiveis.length === 0"
+            placeholder="Selecione o tamanho do produto" required>
         </ng-select>
     </div>
 
@@ -38,7 +40,7 @@
         <label class="form-label">Remover</label>
         <div class="d-flex justify-content-center">
             <div class="form-check form-switch ps-0">
-                <button class="btn btn-outline-secondary">
+                <button class="btn btn-outline-secondary btn-sm">
                     <i class="bi bi-trash"></i>
                 </button>
             </div>
