@@ -8,3 +8,4 @@ export * from './marca';
 export * from './produto-cor';
 export * from './produto-variacao';
 export * from './produto';
+export * from './dados-modal-confirmacao';

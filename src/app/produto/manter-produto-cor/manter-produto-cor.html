@@ -74,7 +74,8 @@
 
             <app-variacao-produto [variacaoProduto]="variacao" 
                 [tamanhosDisponiveis]="tamanhosDisponiveis"
-                (tamanhoAlterado)="handleTamanhoAlterado($event)">
+                (tamanhoAlterado)="handleTamanhoAlterado($event)"
+                (removerVariacaoProduto)="handleRemoverVariacaoProduto($event)">
             </app-variacao-produto>
 
         </div>

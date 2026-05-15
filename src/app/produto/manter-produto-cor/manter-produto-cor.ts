@@ -169,4 +169,21 @@ export class ManterProdutoCor implements OnInit {
       return ordemA - ordemB;
     });
   }
+
+  handleRemoverVariacaoProduto(event: ProdutoVariacao) {
+    // Não remover se tiver um elemento só na lista 
+    
+    const index = this.produtoCor.variacoes.indexOf(event);
+
+    if (index !== -1) {
+      this.produtoCor.variacoes.splice(index, 1);
+
+      if (event.tamanho) {
+        this.handleTamanhoAlterado({
+          anterior: event.tamanho, 
+          novo: undefined as any 
+        });
+      }
+    }
+  }
 }

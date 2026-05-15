@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { GradeTamanhoItem, Produto, ProdutoVariacao } from '../../shared/models';
-import { GradeTamanhoItemService } from '../services';
+import { DadosModalConfirmacao, GradeTamanhoItem, ProdutoVariacao } from '../../shared/models';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmacao } from '../../shared/components/modal-confirmacao';
 
 @Component({
   selector: 'app-variacao-produto',
@@ -12,11 +13,12 @@ export class VariacaoProduto implements OnInit {
   @Input() variacaoProduto!: ProdutoVariacao;
   @Input() tamanhosDisponiveis: GradeTamanhoItem[] = [];
   @Output() tamanhoAlterado = new EventEmitter<{ anterior: GradeTamanhoItem | undefined, novo: GradeTamanhoItem }>();
+  @Output() removerVariacaoProduto = new EventEmitter<ProdutoVariacao>();
 
   tamanhoAnterior: GradeTamanhoItem | undefined;
 
   constructor(
-    private gradeTamanhoItemService: GradeTamanhoItemService
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +35,30 @@ export class VariacaoProduto implements OnInit {
       novo: novoTamanho
     });
     this.tamanhoAnterior = novoTamanho;
+  }
+
+  removerVariacao() {    
+    const dadosModal: DadosModalConfirmacao = new DadosModalConfirmacao(
+      'Excluir Tamanho',
+      `Tem certeza que deseja apagar o tamanho ${this.variacaoProduto.tamanho?.tamanho || ''} ?`,
+      'Sim',
+      'Cancelar'
+    );
+
+    const modalRef = this.modalService.open(ModalConfirmacao, {
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    modalRef.componentInstance.dadosModal = dadosModal;
+
+    modalRef.result.then(
+      (result) => {
+        if (result === true) {
+          this.removerVariacaoProduto.emit(this.variacaoProduto);
+        }
+      }
+    );
   }
 
 }
