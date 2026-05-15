@@ -98,8 +98,10 @@
             </div>
 
             <div class="divBtnAddCor">
-                <button (click)="adicionarProdutoCor()" type="button" class="btn btn-primary">+ Adicionar Nova
-                    Cor</button>
+                <button (click)="adicionarProdutoCor()" 
+                    type="button" 
+                    class="btn btn-primary"
+                    [disabled]="produto.produtoCores.length >= 20">+ Adicionar Nova Cor</button>
             </div>
 
         </div>
