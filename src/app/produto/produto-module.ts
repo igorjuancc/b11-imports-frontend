@@ -6,6 +6,7 @@ import { ManterProduto } from './manter-produto';
 import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [VariacaoProduto, ManterProdutoCor, ManterProduto],
@@ -13,7 +14,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     CommonModule, 
     FormsModule, 
     DragDropModule,
-    NgSelectModule
+    NgSelectModule,
+    NgbTooltipModule
   ]
 })
 export class ProdutoModule {}

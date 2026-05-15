@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DadosModalConfirmacao, GradeTamanhoItem, ProdutoVariacao } from '../../shared/models';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalConfirmacao } from '../../shared/components/modal-confirmacao';
+import { ModalConfirmacao } from '../../shared/components';
 
 @Component({
   selector: 'app-variacao-produto',

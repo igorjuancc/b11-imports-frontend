@@ -4,3 +4,4 @@ export * from './product-grid';
 export * from './image-carousel';
 export * from './menu-logo';
 export * from './cards-carousel';
+export * from './modal-confirmacao';

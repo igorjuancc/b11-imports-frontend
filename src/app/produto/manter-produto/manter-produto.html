@@ -90,7 +90,9 @@
 
             <div *ngFor="let produtoCor of produto.produtoCores">
 
-                <app-manter-produto-cor [produtoCor]="produtoCor" [filtroTamanho]="filtroTamanho">
+                <app-manter-produto-cor [produtoCor]="produtoCor" 
+                    [filtroTamanho]="filtroTamanho"
+                    (removerProdutoCor)="handlerRemoverProdutoCor($event)">
                 </app-manter-produto-cor>
 
             </div>

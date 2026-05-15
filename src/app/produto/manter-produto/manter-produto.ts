@@ -65,4 +65,12 @@ export class ManterProduto implements OnInit {
       categoriaId: this.produto.categoria?.id
     };
   }
+
+  handlerRemoverProdutoCor(event: ProdutoCor) {
+    const index = this.produto.produtoCores.indexOf(event);
+
+    if (index !== -1) {
+      this.produto.produtoCores.splice(index, 1);      
+    }
+  }
 }

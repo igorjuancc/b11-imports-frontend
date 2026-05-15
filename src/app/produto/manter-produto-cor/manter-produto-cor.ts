@@ -1,8 +1,10 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
-import { Cor, GradeTamanhoItem, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Cor, DadosModalConfirmacao, GradeTamanhoItem, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
 import { CorService, GradeTamanhoItemService } from '../services';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProdutoFiltro } from '../../shared/filters';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmacao } from '../../shared/components';
 
 @Component({
   selector: 'app-manter-produto-cor',
@@ -13,6 +15,7 @@ import { ProdutoFiltro } from '../../shared/filters';
 export class ManterProdutoCor implements OnInit {
   @Input() produtoCor!: ProdutoCor;
   @Input() filtroTamanho!: ProdutoFiltro;
+  @Output() removerProdutoCor = new EventEmitter<ProdutoCor>();
 
   tamanhosDisponiveis: GradeTamanhoItem[] = [];
   mensagensAviso: string[] = [];
@@ -24,7 +27,8 @@ export class ManterProdutoCor implements OnInit {
 
   constructor(
     private corService: CorService,
-    private gradeTamanhoItemService: GradeTamanhoItemService
+    private gradeTamanhoItemService: GradeTamanhoItemService,
+    private modalService: NgbModal
   ) { }
 
   ngOnInit(): void {
@@ -171,8 +175,6 @@ export class ManterProdutoCor implements OnInit {
   }
 
   handleRemoverVariacaoProduto(event: ProdutoVariacao) {
-    // Não remover se tiver um elemento só na lista 
-    
     const index = this.produtoCor.variacoes.indexOf(event);
 
     if (index !== -1) {
@@ -180,10 +182,34 @@ export class ManterProdutoCor implements OnInit {
 
       if (event.tamanho) {
         this.handleTamanhoAlterado({
-          anterior: event.tamanho, 
-          novo: undefined as any 
+          anterior: event.tamanho,
+          novo: undefined as any
         });
       }
     }
+  }
+
+  removerCor() {
+    const dadosModal: DadosModalConfirmacao = new DadosModalConfirmacao(
+      'Excluir cor',
+      `Tem certeza que deseja apagar o produto de cor ${this.produtoCor.corPrincipal?.nome || ''} ?`,
+      'Sim',
+      'Cancelar'
+    );
+
+    const modalRef = this.modalService.open(ModalConfirmacao, {
+      backdrop: 'static',
+      keyboard: false
+    });
+
+    modalRef.componentInstance.dadosModal = dadosModal;
+
+    modalRef.result.then(
+      (result) => {
+        if (result === true) {
+          this.removerProdutoCor.emit(this.produtoCor);
+        }
+      }
+    );
   }
 }

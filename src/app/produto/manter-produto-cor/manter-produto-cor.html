@@ -1,6 +1,15 @@
 <div class="divCorIndividual">
 
-    <h5>Cor</h5>
+    <div class="d-flex flex-row justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">Cor</h5>
+
+        <div class="d-flex flex-row gap-2">
+            <button class="btn btn-outline-secondary btn-sm" ngbTooltip="Remover cor"
+                (click)="removerCor()">
+                <i class="bi bi-x"></i>
+            </button>
+        </div>
+    </div>
 
     <div class="mb-3 row">
 
@@ -72,8 +81,7 @@
 
         <div *ngFor="let variacao of produtoCor.variacoes">
 
-            <app-variacao-produto [variacaoProduto]="variacao" 
-                [tamanhosDisponiveis]="tamanhosDisponiveis"
+            <app-variacao-produto [variacaoProduto]="variacao" [tamanhosDisponiveis]="tamanhosDisponiveis"
                 (tamanhoAlterado)="handleTamanhoAlterado($event)"
                 (removerVariacaoProduto)="handleRemoverVariacaoProduto($event)">
             </app-variacao-produto>
@@ -81,10 +89,8 @@
         </div>
 
         <div class="divBtnAddTamanho">
-            <button (click)="adicionarVariacaoProduto()" 
-                type="button" 
-                class="btn btn-primary btn-sm"
-                [disabled]="tamanhosDisponiveis.length === 0" >+ Adicionar Novo Tamanho</button>
+            <button (click)="adicionarVariacaoProduto()" type="button" class="btn btn-primary btn-sm"
+                [disabled]="tamanhosDisponiveis.length === 0">+ Adicionar Novo Tamanho</button>
         </div>
 
     </div>
