@@ -5,6 +5,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { ProdutoFiltro } from '../../shared/filters';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmacao } from '../../shared/components';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manter-produto-cor',
@@ -19,6 +20,7 @@ export class ManterProdutoCor implements OnInit {
 
   tamanhosDisponiveis: GradeTamanhoItem[] = [];
   mensagensAviso: string[] = [];
+  maxTamanhosDisponiveis: number = 0;
 
   readonly TAM_MAX_IMG = 5 * 1024 * 1024;
   readonly NUM_MAX_IMG = 5;
@@ -28,16 +30,13 @@ export class ManterProdutoCor implements OnInit {
   constructor(
     private corService: CorService,
     private gradeTamanhoItemService: GradeTamanhoItemService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
     this.cores = this.corService.listarTodas();
     this.buscarTamanhosDisponiveisFiltro();
-
-    if (!this.produtoCor.id) {
-      this.adicionarVariacaoProduto();
-    }
   }
 
   uploadImagem(input: HTMLInputElement): void {
@@ -111,7 +110,20 @@ export class ManterProdutoCor implements OnInit {
   }
 
   adicionarVariacaoProduto() {
+    if (this.produtoCor.variacoes.length >= this.maxTamanhosDisponiveis) {
+      this.toastr.error(`Não é possível adicionar mais tamanhos. O limite é de ${this.maxTamanhosDisponiveis}.`, 'Bloqueado', {
+        timeOut: 8000
+      });
+      return;
+    }
+
     this.produtoCor.variacoes.push(new ProdutoVariacao);
+
+    if (this.produtoCor.variacoes.length === this.maxTamanhosDisponiveis) {
+      this.toastr.warning(`Você atingiu o limite máximo de tamanhos (${this.maxTamanhosDisponiveis}) para este produto.`, 'Limite atingido', {
+        timeOut: 8000
+      });
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -142,6 +154,8 @@ export class ManterProdutoCor implements OnInit {
     if (realizarBusca) {
       this.tamanhosDisponiveis = this.gradeTamanhoItemService.listarTodos();
     }
+
+    this.maxTamanhosDisponiveis = this.tamanhosDisponiveis.length;
   }
 
   private limparTamanhosDeVariacoes() {

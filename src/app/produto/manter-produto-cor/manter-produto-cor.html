@@ -90,7 +90,7 @@
 
         <div class="divBtnAddTamanho">
             <button (click)="adicionarVariacaoProduto()" type="button" class="btn btn-primary btn-sm"
-                [disabled]="tamanhosDisponiveis.length === 0">+ Adicionar Novo Tamanho</button>
+                [disabled]="produtoCor.variacoes.length >= this.maxTamanhosDisponiveis">+ Adicionar Novo Tamanho</button>
         </div>
 
     </div>
