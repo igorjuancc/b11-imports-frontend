@@ -4,8 +4,7 @@
         <h5 class="mb-0">Cor</h5>
 
         <div class="d-flex flex-row gap-2">
-            <button class="btn btn-outline-secondary btn-sm" ngbTooltip="Remover cor"
-                (click)="removerCor()">
+            <button class="btn btn-outline-secondary btn-sm" ngbTooltip="Remover cor" (click)="removerCor()">
                 <i class="bi bi-x"></i>
             </button>
         </div>
@@ -16,9 +15,14 @@
         <div class="col-md-6">
             <label for="corPrincipal" class="form-label">Cor Principal</label>
             <ng-select name="corPrincipal" [items]="cores" bindLabel="nome" [(ngModel)]="produtoCor.corPrincipal"
-                placeholder="Selecione a cor principal" required>
+                placeholder="Selecione a cor principal" #corPrincipal="ngModel" required>
             </ng-select>
+
+            <div *ngIf="corPrincipal.errors && (corPrincipal.dirty || corPrincipal.touched)" class="alert alert-danger">
+                <div [hidden]="!corPrincipal.errors['required']"> Selecione a cor principal do produto. </div>
+            </div>
         </div>
+
 
         <div class="col-md-6">
             <label for="corComplementar" class="form-label">Cores complementares</label>
@@ -37,7 +41,8 @@
 
             <div class="input-group mb-3">
                 <div class="input-group">
-                    <input type="file" class="form-control" aria-label="Upload" #inputImagens multiple accept="image/*" (change)="0">
+                    <input type="file" class="form-control" aria-label="Upload" #inputImagens multiple accept="image/*"
+                        (change)="0">
                     <button class="btn btn-primary" type="button" (click)="uploadImagem(inputImagens)"
                         [disabled]="!inputImagens.files || inputImagens.files.length === 0">
                         Upload
@@ -48,11 +53,11 @@
         </div>
 
         <div class="col-md-12">
+
             <div class="container-uploads" cdkDropList cdkDropListOrientation="horizontal"
                 (cdkDropListDropped)="drop($event)">
 
                 <div *ngFor="let img of produtoCor.imagens; let i = index" class="wrapper-img" cdkDrag>
-
                     <img [src]="img.link" class="img-upload-thumbnail">
 
                     <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1"
@@ -64,8 +69,11 @@
                 </div>
             </div>
 
-        </div>
+            <div *ngIf="produtoCor.imagens.length === 0" class="alert alert-warning mt-2">
+                <div> Adicione pelo menos uma imagem para esta cor do produto. </div>
+            </div>
 
+        </div>
 
     </div>
 
@@ -91,7 +99,8 @@
 
         <div class="divBtnAddTamanho">
             <button (click)="adicionarVariacaoProduto()" type="button" class="btn btn-primary btn-sm"
-                [disabled]="produtoCor.variacoes.length >= this.maxTamanhosDisponiveis">+ Adicionar Novo Tamanho</button>
+                [disabled]="produtoCor.variacoes.length >= this.maxTamanhosDisponiveis">+ Adicionar Novo
+                Tamanho</button>
         </div>
 
     </div>
