@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Cor, DadosModalConfirmacao, GradeTamanhoItem, ImagemProduto, ProdutoCor, ProdutoVariacao } from '../../shared/models';
 import { CorService, GradeTamanhoItemService } from '../services';
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './manter-produto-cor.html',
   styleUrl: './manter-produto-cor.css',
 })
-export class ManterProdutoCor implements OnInit {
+export class ManterProdutoCor implements OnInit, OnDestroy {
   @Input() produtoCor!: ProdutoCor;
   @Input() filtroTamanho!: ProdutoFiltro;
   @Output() removerProdutoCor = new EventEmitter<ProdutoCor>();
@@ -39,13 +39,25 @@ export class ManterProdutoCor implements OnInit {
     this.buscarTamanhosDisponiveisFiltro();
   }
 
+  ngOnDestroy(): void {
+    if (this.produtoCor?.imagens?.length) {
+      this.produtoCor.imagens.forEach(imagem => {
+        if (imagem.link) {
+          URL.revokeObjectURL(imagem.link);
+        }
+      });
+    }
+  }
+
   uploadImagem(input: HTMLInputElement): void {
     const files = input.files;
 
     if (files) {
       for (let file of files) {
         if (this.produtoCor.imagens.length >= this.NUM_MAX_IMG) {
-          alert(`Limite de ${this.NUM_MAX_IMG} imagens atingido.`);
+          this.toastr.error(`Limite de ${this.NUM_MAX_IMG} imagens atingido.`, 'Bloqueado', {
+            timeOut: 8000
+          });
           return;
         }
 
@@ -61,7 +73,9 @@ export class ManterProdutoCor implements OnInit {
       const novaImagemProduto = this.criarImagemProduto(file);
       this.produtoCor.imagens.push(novaImagemProduto);
     } catch (error: any) {
-      console.error(error.message);
+      this.toastr.error(error.message, 'Falha no Arquivo', {
+        timeOut: 4000
+      });
     }
   }
 
