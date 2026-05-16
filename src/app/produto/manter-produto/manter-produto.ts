@@ -5,6 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CategoriaService, EsporteService, MarcaService } from '../services';
 import { FaixaEtaria, Genero } from '../../shared/enums';
 import { ProdutoFiltro } from '../../shared/filters';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manter-produto',
@@ -28,7 +29,8 @@ export class ManterProduto implements OnInit {
     private route: ActivatedRoute,
     private categoriaService: CategoriaService,
     private esporteService: EsporteService,
-    private marcaService: MarcaService
+    private marcaService: MarcaService,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -55,7 +57,20 @@ export class ManterProduto implements OnInit {
   }
 
   adicionarProdutoCor() {
+    if (this.produto.produtoCores.length >= 20) {
+      this.toastr.error('Não é possível adicionar mais. O limite é de 20 cores.', 'Bloqueado', {
+        timeOut: 3000
+      });
+      return;
+    }
+
     this.produto.produtoCores.push(new ProdutoCor());
+
+    if (this.produto.produtoCores.length === 20) {
+      this.toastr.warning('Você atingiu o limite máximo de 20 cores para este produto.', 'Limite atingido', {
+        timeOut: 4000
+      });
+    }
   }
 
   atualizarFiltrosParaTamanho() {
@@ -70,7 +85,7 @@ export class ManterProduto implements OnInit {
     const index = this.produto.produtoCores.indexOf(event);
 
     if (index !== -1) {
-      this.produto.produtoCores.splice(index, 1);      
+      this.produto.produtoCores.splice(index, 1);
     }
   }
 }
