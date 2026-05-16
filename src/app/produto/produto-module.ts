@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxCurrencyDirective } from 'ngx-currency';
 
 @NgModule({
   declarations: [VariacaoProduto, ManterProdutoCor, ManterProduto],
@@ -15,7 +16,8 @@ import { NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
     FormsModule, 
     DragDropModule,
     NgSelectModule,
-    NgbTooltipModule
+    NgbTooltipModule,
+    NgxCurrencyDirective
   ]
 })
 export class ProdutoModule {}

@@ -4,31 +4,65 @@
         <label for="tamanho" class="form-label">Tamanho</label>
         <ng-select name="tamanho" [items]="tamanhosDisponiveis" bindLabel="tamanho"
             [(ngModel)]="variacaoProduto.tamanho" (change)="onTamanhoChange($event)"
-            (focus)="setTamanhoAnterior(variacaoProduto.tamanho)" 
-            [disabled]="tamanhosDisponiveis.length === 0"
-            placeholder="Selecione o tamanho do produto" required>
+            (focus)="setTamanhoAnterior(variacaoProduto.tamanho)" [disabled]="tamanhosDisponiveis.length === 0"
+            placeholder="Selecione o tamanho do produto" #tamanho="ngModel" [required]="true">
         </ng-select>
+
+        <div *ngIf="tamanho.invalid && (tamanho.dirty || tamanho.touched)" class="alert alert-danger mt-2">
+            <div *ngIf="tamanho.errors?.['required']">
+                Selecione o tamanho do produto.
+            </div>
+        </div>
     </div>
 
     <div class="col-md-2">
         <label for="precoOriginal" class="form-label">Preço Original</label>
-        <input type="text" class="form-control" id="precoOriginal" placeholder="R$0.00">
+        <input type="text" currencyMask [(ngModel)]="variacaoProduto.precoOriginal" class="form-control"
+            id="precoOriginal" name="precoOriginal" placeholder="R$ 0.00" [options]="{
+            prefix: 'R$ ',
+            thousands: '.',
+            decimal: ',',
+            precision: 2,
+            allowNegative: false }" #precoOriginal="ngModel" required>
+
+        <div *ngIf="(precoOriginal.invalid || (variacaoProduto.precoOriginal ?? 0) <= 0) && (precoOriginal.dirty || precoOriginal.touched)"
+            class="alert alert-danger mt-2">
+            <div *ngIf="precoOriginal.errors?.['required']">
+                Digite o preço original do produto.
+            </div>
+            <div
+                *ngIf="variacaoProduto.precoOriginal !== null && variacaoProduto.precoOriginal !== undefined && variacaoProduto.precoOriginal <= 0">
+                O preço do produto deve ser maior que zero.
+            </div>
+        </div>
     </div>
+
 
     <div class="col-md-2">
         <label for="precoPromocional" class="form-label">Preço Promocional</label>
-        <input type="text" class="form-control" id="precoOriginal" placeholder="R$0.00">
+        <input type="text" currencyMask [(ngModel)]="variacaoProduto.precoPromocional" class="form-control"
+            id="precoPromocional" name="precoPromocional" placeholder="R$ 0.00" [options]="{
+            prefix: 'R$ ',
+            thousands: '.',
+            decimal: ',',
+            precision: 2,
+            allowNegative: false }" #precoPromocional="ngModel">
     </div>
 
     <div class="col-md-2">
         <label for="estoque" class="form-label">Estoque</label>
-        <input type="text" class="form-control" id="estoque" placeholder="0">
+        <input type="text" class="form-control" 
+            id="estoque" 
+            name="estoque" 
+            type="number" 
+            [(ngModel)]="variacaoProduto.estoqueAtual"
+        placeholder="0">
     </div>
 
     <div class="col-md-2 d-flex flex-column">
         <label for="switchCheckChecked" class="form-label">Habilitar Produto</label>
 
-        <div class="d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="d-flex justify-content-center flex-grow-1">
             <div class="form-check form-switch ps-0 m-0">
                 <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChecked" checked
                     style="cursor: pointer;">
@@ -40,9 +74,7 @@
         <label class="form-label">Remover</label>
         <div class="d-flex justify-content-center">
             <div class="form-check form-switch ps-0">
-                <button 
-                    (click)="removerVariacao()"
-                    class="btn btn-outline-secondary btn-sm">
+                <button (click)="removerVariacao()" class="btn btn-outline-secondary btn-sm">
                     <i class="bi bi-trash"></i>
                 </button>
             </div>
