@@ -12,26 +12,36 @@
             <div class="col-md-10">
                 <label for="nome" class="form-label">Nome do Produto</label>
                 <input name="nome" type="text" class="form-control" placeholder="Nome do Produto"
-                    [(ngModel)]="produto.nome" minlength="2" required>
-            </div>
-            <div class="col-md-2">
-                <label for="ativo" class="form-label">Habilitar Produto</label>
-                <div class="form-check form-switch">
-                    <input name="ativo" [(ngModel)]="produto.ativo" class="form-check-input" type="checkbox"
-                        role="switch" checked>
+                    [(ngModel)]="produto.nome" minlength="2" maxlength="100" #nome="ngModel" required>
+
+                <div *ngIf="nome.errors && (nome.dirty || nome.touched)" class="alert alert-danger">
+                    <div [hidden]="!nome.errors['required']"> Digite o nome do produto. </div>
+                    <div [hidden]="!nome.errors['minlength']"> O nome deve conter ao menos 2 caracteres. </div>
                 </div>
             </div>
-
+            <div class="col-md-2 d-flex flex-column">
+                <label for="ativo" class="form-label">Habilitar Produto</label>
+                <div class="d-flex justify-content-center align-items-center flex-grow-1">
+                    <div class="form-check form-switch ps-0 m-0">
+                        <input name="ativo" [(ngModel)]="produto.ativo" class="form-check-input" type="checkbox"
+                            role="switch" checked>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="mb-3 row">
 
             <div class="col-md-4">
                 <label for="categoria" class="form-label">Categoria</label>
-                <ng-select name="categoria" [items]="categorias" 
-                    bindLabel="nome" [(ngModel)]="produto.categoria"
-                    placeholder="Selecione uma categoria" (change)="atualizarFiltrosParaTamanho()" required>
+                <ng-select name="categoria" [items]="categorias" bindLabel="nome" [(ngModel)]="produto.categoria"
+                    placeholder="Selecione uma categoria" (change)="atualizarFiltrosParaTamanho()" #categoria="ngModel"
+                    required>
                 </ng-select>
+
+                <div *ngIf="categoria.errors && (categoria.dirty || categoria.touched)" class="alert alert-danger">
+                    <div [hidden]="!categoria.errors['required']"> Escolha uma categoria para o produto. </div>
+                </div>
             </div>
 
             <div class="col-md-4">
@@ -43,7 +53,12 @@
 
             <div class="col-md-4">
                 <label for="lancamento" class="form-label">Data de Lançamento</label>
-                <input name="lancamento" [(ngModel)]="produto.dataLancamento" type="date" class="form-control" required>
+                <input name="lancamento" [(ngModel)]="produto.dataLancamento" type="date" class="form-control"
+                    #lancamento="ngModel" required>
+
+                <div *ngIf="lancamento.errors && (lancamento.dirty || lancamento.touched)" class="alert alert-danger">
+                    <div [hidden]="!lancamento.errors['required']"> Selecione a data de lançamento do produto. </div>
+                </div>
             </div>
 
         </div>
@@ -53,24 +68,36 @@
             <div class="col-md-4">
                 <label for="marca" class="form-label">Marca</label>
                 <ng-select name="marca" [items]="marcas" bindLabel="nome" [(ngModel)]="produto.marca"
-                    placeholder="Selecione uma marca" required>
+                    placeholder="Selecione uma marca" #marca="ngModel" required>
                 </ng-select>
+
+                <div *ngIf="marca.errors && (marca.dirty || marca.touched)" class="alert alert-danger">
+                    <div [hidden]="!marca.errors['required']"> Selecione a marca do produto. </div>
+                </div>
             </div>
 
             <div class="col-md-4">
-                <label for="genero" class="form-label">Genêro</label>
-                <ng-select name="genero" [items]="generos" 
-                    [(ngModel)]="produto.genero" placeholder="Selecione o genero"
-                    (change)="atualizarFiltrosParaTamanho()" required>
+                <label for="genero" class="form-label">Gênero</label>
+                <ng-select name="genero" [items]="generos" [(ngModel)]="produto.genero" placeholder="Selecione o gênero"
+                    (change)="atualizarFiltrosParaTamanho()" #genero="ngModel" required>
                 </ng-select>
+
+                <div *ngIf="genero.errors && (genero.dirty || genero.touched)" class="alert alert-danger">
+                    <div [hidden]="!genero.errors['required']"> Selecione o gênero do produto. </div>
+                </div>
             </div>
 
             <div class="col-md-4">
                 <label for="faixaEtaria" class="form-label">Perfil</label>
-                <ng-select name="faixaEtaria" [items]="faixasEtarias" 
-                    [(ngModel)]="produto.faixaEtaria" placeholder="Selecione o perfil"
-                    (change)="atualizarFiltrosParaTamanho()" required>
+                <ng-select name="faixaEtaria" [items]="faixasEtarias" [(ngModel)]="produto.faixaEtaria"
+                    placeholder="Selecione o perfil" (change)="atualizarFiltrosParaTamanho()" #faixaEtaria="ngModel"
+                    required>
                 </ng-select>
+
+                <div *ngIf="faixaEtaria.errors && (faixaEtaria.dirty || faixaEtaria.touched)"
+                    class="alert alert-danger">
+                    <div [hidden]="!faixaEtaria.errors['required']"> Selecione o perfil do produto. </div>
+                </div>
             </div>
 
         </div>
@@ -80,7 +107,12 @@
             <div class="col-md-12">
                 <label for="descricao" class="form-label">Descrição</label>
                 <textarea name="descricao" [(ngModel)]="produto.descricao" class="form-control" rows="3" minlength="2"
-                    required></textarea>
+                    maxlength="200" #descricao="ngModel" required></textarea>
+
+                <div *ngIf="descricao.errors && (descricao.dirty || descricao.touched)" class="alert alert-danger">
+                    <div [hidden]="!descricao.errors['required']">Digite a descrição do produto.</div>
+                    <div [hidden]="!descricao.errors['minlength']">A descrição deve conter ao menos 2 caracteres.</div>
+                </div>
             </div>
 
         </div>
@@ -90,17 +122,14 @@
 
             <div *ngFor="let produtoCor of produto.produtoCores">
 
-                <app-manter-produto-cor [produtoCor]="produtoCor" 
-                    [filtroTamanho]="filtroTamanho"
+                <app-manter-produto-cor [produtoCor]="produtoCor" [filtroTamanho]="filtroTamanho"
                     (removerProdutoCor)="handlerRemoverProdutoCor($event)">
                 </app-manter-produto-cor>
 
             </div>
 
             <div class="divBtnAddCor">
-                <button (click)="adicionarProdutoCor()" 
-                    type="button" 
-                    class="btn btn-primary"
+                <button (click)="adicionarProdutoCor()" type="button" class="btn btn-primary"
                     [disabled]="produto.produtoCores.length >= 20">+ Adicionar Nova Cor</button>
             </div>
 
